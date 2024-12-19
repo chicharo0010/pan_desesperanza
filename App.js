@@ -10,7 +10,7 @@ const fs = require('fs');
 const req = require("express/lib/request");
 
 const port = 3000;
-
+ 
 // Definir directorio de carga
 const uploadDir = path.join(__dirname, 'public', 'uploads');
 if (!fs.existsSync(uploadDir)) {
