@@ -39,7 +39,7 @@ document.getElementById('agregarProducto').addEventListener('submit', async (eve
 
     try {
         // Realizar la petición al servidor
-        const response = await fetch('http://localhost:3000/agregarProducto', {
+        const response = await fetch('/agregarProducto', {
             method: 'POST',
             body: formData
         });
