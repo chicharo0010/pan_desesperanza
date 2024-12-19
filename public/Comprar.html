@@ -144,8 +144,30 @@
     // Redirigir a la página de pago
     window.location.href = 'carrito.html';
 });
+        });
+    </script>
+    <script>
+        document.getElementById('cerrarSesion').addEventListener('click', function(event) {
+            event.preventDefault(); // Evita que el enlace haga la acción predeterminada
 
-
+            // Realiza la solicitud al servidor para cerrar la sesión
+            fetch('/cerrarsesion', {
+                method: 'POST', // Especificamos que es una solicitud POST
+                headers: {
+                    'Content-Type': 'application/json' // Indicamos que el cuerpo de la solicitud es JSON
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message);  // Muestra el mensaje de éxito
+                    window.location.href = '/login';  // Redirige a la página de login
+                }
+            })
+            .catch(error => {
+                console.error('Error al cerrar sesión:', error);
+                alert('Hubo un error al cerrar la sesión.');
+            });
         });
     </script>
     <script src="carito.js"></script>
