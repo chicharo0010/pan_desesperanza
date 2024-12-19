@@ -1,7 +1,7 @@
 // Función para obtener todas las compras y mostrarlas en la tabla
 function mostrarCompras() {
   // Hacemos la solicitud fetch al servidor para obtener todas las compras
-  fetch('http://localhost:3000/compras')
+  fetch('/compras')
     .then(response => {
       // Si la respuesta es ok (200), la parseamos como JSON
       if (response.ok) {
