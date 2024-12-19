@@ -1,0 +1,212 @@
+body {
+    margin: 0;
+    background-color: var(--color-fondo);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar contenido */
+}
+
+.logo{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+header {
+    width: 100%;
+    height: 760px;
+    background: url(./assets/fondo_inicio.jpg) no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar {
+    width: 100%;
+    background-color: white;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar a {
+    color: black;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.navbar a:hover {
+    color: black;
+    font-size: 30px;
+}
+
+.textos-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.textos-header h1 {
+    font-size: 50px;
+}
+
+.textos-header h2 {
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.carrusel {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ocupa el ancho completo */
+    position: relative;
+    overflow: hidden; /* Esconde el desbordamiento */
+    margin: 20px 0; /* Margen superior e inferior */
+}
+
+.productos {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease; /* Transición suave */
+}
+
+.producto {
+    flex: 0 0 20%; /* Cada producto ocupa el 20% del ancho total (5 productos) */
+    text-align: left;
+    margin: 10px;
+}
+
+.producto img {
+    width: 300px;
+    height: 250px;
+}
+.panes{
+    display: grid;
+    grid-template:  1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
+    gap: 30px;   
+    width: 95%;
+}
+.pan{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+footer{
+    width: 100%;
+    height: 300px;
+    background-color: #2e2e2e;
+}
+.footer{
+    display: grid;
+    grid-template: 1fr / 1fr 1fr 1fr;
+    gap: 50px;
+    width: 100%;
+}
+
+.panes img{
+    width: 300px;
+    height: 250px;
+}
+
+/* Estilos para la sección del carrito de compras */
+#img-carrito {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Estilo del contenedor del carrito */
+#carrito {
+  display: none; /* Inicialmente oculto */
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 300px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 100;
+}
+
+/* Mostrar el carrito cuando sea activado */
+#carrito.show {
+  display: block;
+}
+
+/* Tabla del carrito */
+#lista-carrito {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+#lista-carrito th,
+#lista-carrito td {
+  padding: 10px;
+  text-align: left;
+}
+
+#lista-carrito th {
+  background-color: #f4f4f4;
+}
+
+#lista-carrito td img {
+  max-width: 50px;
+  border-radius: 5px;
+}
+
+#lista-carrito td a {
+  color: red;
+  cursor: pointer;
+}
+
+/* Estilo del botón para vaciar el carrito */
+#vaciar-carrito {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  display: block;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#vaciar-carrito:hover {
+  background-color: #e53935;
+}
+
+/* Submenú de carrito (oculto por defecto) */
+.submenu {
+  position: relative;
+  display: inline-block;
+}
+
+.submenu:hover #carrito {
+  display: block;
+}
+
+/* Alineación y espaciado en el carrito */
+.two.columns.u-pull-right {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Estilo de la lista dentro del carrito */
+.submenu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

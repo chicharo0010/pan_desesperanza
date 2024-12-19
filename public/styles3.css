@@ -1,0 +1,151 @@
+/* Establecer el fondo de la página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f1f1f1;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para el header */
+header {
+    background-color: #c72c41; /* Rojo navideño */
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el título del carrito */
+h1 {
+    font-size: 2.5em;
+    font-family: 'Cursive', sans-serif; /* Fuente navideña */
+    margin: 0;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo para el contenedor del carrito */
+.cart {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #c72c41; /* Borde rojo navideño */
+}
+
+/* Estilo para los elementos del carrito */
+.cart h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Cursive', sans-serif;
+    color: #388e3c; /* Verde navideño */
+}
+
+/* Lista de productos */
+.cart ul {
+    list-style: none;
+    padding: 0;
+    font-size: 1.2em;
+}
+
+.cart ul li {
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Efecto hover en los productos */
+.cart ul li:hover {
+    background-color: #d7f0d7;
+    transform: translateY(-5px);
+}
+
+/* Imagen de los productos */
+.cart ul li img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 50%;
+}
+
+/* Estilo para el total */
+#total {
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #388e3c; /* Verde navideño */
+}
+
+/* Estilo para el botón de proceder al pago */
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.5em;
+    background-color: #28a745; /* Verde navideño */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #218838; /* Verde oscuro navideño */
+}
+
+/* Estilo para el footer */
+footer {
+    background-color: #c72c41; /* Rojo navideño */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 1em;
+}
+
+/* Efecto de nieve para la página */
+@keyframes snow {
+    0% { top: -10px; opacity: 1; }
+    100% { top: 100vh; opacity: 0; }
+}
+
+.snow {
+    position: fixed;
+    top: -10px;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: snow 10s linear infinite;
+    animation-delay: calc(-10s * random());
+}
+
+/* Crear nieve usando pseudo-elementos */
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://www.transparenttextures.com/patterns/white-diamond.png');
+    pointer-events: none;
+}

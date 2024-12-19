@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="styles3.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header>
+        <h1>Carrito de Compras</h1>
+    </header>
+
+    <main>
+        <div class="cart">
+            <h2>Tu Carrito</h2>
+            <ul id="lista-carrito"></ul>
+            <p id="total">Total: $0</p>
+            <button onclick="realizarCompra()">Pagar</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Panadería Dulce Tradición</p>
+    </footer>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Obtener el carrito desde localStorage
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Verificar si el carrito está vacío
+    if (carrito.length === 0) {
+        alert("El carrito está vacío.");
+        return;
+    }
+
+    // Mostrar los productos en la página
+    const carritoContainer = document.querySelector(".cart ul");
+    let total = 0;
+
+    carrito.forEach(producto => {
+        const item = document.createElement("li");
+
+        // Crear la imagen del producto
+        const imagen = document.createElement("img");
+        imagen.src = producto.imagen; // Aquí se asume que cada producto tiene un atributo imagen
+        imagen.alt = producto.nombre;
+        
+        // Crear el texto del producto
+        const texto = document.createElement("span");
+        texto.textContent = `${producto.nombre} - $${producto.precio} x ${producto.cantidad}`;
+
+        // Agregar la imagen y el texto al item
+        item.appendChild(imagen);
+        item.appendChild(texto);
+
+        // Agregar el item a la lista del carrito
+        carritoContainer.appendChild(item);
+
+        total += producto.precio * producto.cantidad;
+    });
+
+    // Mostrar el total
+    document.querySelector(".cart p").textContent = `Total: $${total}`;
+
+    // Agregar funcionalidad al botón de "Proceder al pago"
+    document.querySelector("button").addEventListener('click', function() {
+        // Aquí, puedes realizar el proceso de pago (simulado o real)
+        alert("Procediendo al pago...");
+    });
+});
+
+
+function sincronizarCarrito() {
+    localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
+}
+
+// Cargar carrito desde LocalStorage
+function cargarCarritoDesdeStorage() {
+    const carritoStorage = JSON.parse(localStorage.getItem('carrito')) || [];
+    articulosCarrito = carritoStorage;
+    carritoHTML();
+}
+
+function realizarCompra() {
+    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const total = carrito.reduce((acc, producto) => acc + producto.precio * producto.cantidad, 0);
+    const productos = carrito.map(producto => ({
+        id_pan: producto.id,  // Aquí se usa el ID del producto
+        cantidad: producto.cantidad
+    }));
+
+    fetch('/comprarpanes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ productos, total })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+    alert(data.message);
+    localStorage.removeItem('carrito');  // Limpiar el carrito
+    window.location.href = 'inicio.html';  // Redirigir a 'inicio.html'
+} else {
+    alert(data.error);
+}
+
+})
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Hubo un error al procesar la compra');
+    });
+}
+
+
+
+
+
+    </script>
+</body>
+</html>

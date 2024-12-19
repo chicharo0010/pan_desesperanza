@@ -1,0 +1,213 @@
+:root {
+    --body-bg: #e4f5e1; /* Verde suave navideño */
+    --form-bg: rgba(255, 255, 255, 0.95); /* Blanco, más claro para destacar */
+    --blanco: #ffffff;
+
+    --color-principal: #d32f2f; /* Rojo navideño */
+    --color-principal-light: #e57373; /* Rojo suave */
+    --color-principal-dark: #b71c1c; /* Rojo oscuro */
+
+    --gris-light: #f1f1f1; /* Gris muy claro */
+    --gris: #d3d3d3; /* Gris suave */
+    --negro:#000000;
+
+    --thin: 300;
+    --normal: 400;
+    --bold: 600;
+    --br: 4px;
+
+    --fuente-principal: "Ubuntu", helvetica, sans-serif;
+    --fuente-secundaria: "Raleway", arial, sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    color: var(--blanco);
+    background-color: var(--body-bg);
+}
+/* formulario{
+    fo
+} */
+
+
+a {
+    text-decoration: none;
+    color: var(--gris-light);
+    transition: 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-principal);
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: var(--form-bg);
+    padding: 40px;
+    border-radius: var(--br);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    font-weight: var(--thin);
+    margin-bottom: 40px;
+    color: var(--color-principal);
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.tabs button {
+    flex: 1;
+    text-align: center;
+    padding: 15px;
+    background: rgba(0, 128, 0, 0.25); /* Verde navideño claro */
+    color: var(--gris-light);
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.tabs button:hover {
+    background: var(--color-principal-dark);
+    color: var(--blanco);
+}
+
+.tabs button.active {
+    background: var(--color-principal);
+    color: var(--blanco);
+}
+
+.form-container {
+    display: none;
+}
+
+.form-container.active {
+    display: block;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: rgba(2, 2, 2, 0.8);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    background: none;
+    border: 1px solid var(--gris-light);
+    border-radius: 5px;
+    color: var(--negro);
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: var(--color-principal-light);
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background: var(--color-principal-dark);
+    border: none;
+    color: var(--blanco);
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: var(--color-principal-light);
+}
+
+/* Estilo adicional para el select */
+.select-container {
+    position: relative;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    background: var(--form-bg);
+    border: 1px solid var(--gris-light);
+    border-radius: 5px;
+    color: var(--negro);
+    appearance: none; /* Oculta el estilo por defecto del navegador */
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+option{
+    color: lightslategrey;
+}
+
+select:focus {
+    border-color: var(--color-principal-light);
+    background: var(--color-principal-dark);
+    outline: none;
+}
+
+select:hover {
+    background: var(--color-principal-light);
+}
+
+/* Flecha personalizada */
+.select-container::after {
+    content: "▼"; /* Flecha personalizada */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--gris-light);
+    font-size: 18px;
+}
+
+.gallery-container {
+    margin-top: 20px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.gallery img:hover {
+    opacity: 0.7;
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 500px) {
+    .tabs button {
+        font-size: 16px;
+        padding: 10px;
+    }
+}

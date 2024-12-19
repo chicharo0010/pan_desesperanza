@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprar</title>
+    <link rel="stylesheet" href="Comprar.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/9bca7b26a7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1 class="logo">La Desesperanza</h1>
+            <a href="inicio.html">Inicio</a>
+            <a href="Comprar.html">Comprar</a>
+            <a href="#" id="cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></a>
+            <div class="two columns u-pull-right">
+                <ul>
+                    <li class="submenu">
+                        <img src="assets/cart.png" id="img-carrito">
+                        <div id="carrito">
+                            <table id="lista-carrito" class="u-full-width">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
+                            <a href="#" id="proceder-pago" class="button u-full-width">Proceder al Pago</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="fondos">
+            <form id="agrfondos">
+                <label>Agregar fondos</label>
+                <input type="number" name="canti_f" id="canti_f">
+                <button type="submit">Agregar</button>
+            </form>
+            <div id="fondos"></div>
+        </div>
+        <br><br>
+        
+        <section class="content">
+            <div class="catalogo" id="catalogo"></div>
+        </section>
+    </header>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Función para agregar fondos
+            document.getElementById('agrfondos').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const fond = document.getElementById('canti_f').value;
+
+                if (!fond) {
+                    alert('Llena el campo');
+                    return;
+                }
+                if (isNaN(fond)) {
+                    alert('Ingresa solo caracteres numéricos');
+                    return;
+                }
+                if (fond<0) {
+                    alert('Ingresa una cantidad mayor a cero');
+                    return;
+                }if (fond>9999999) {
+                    alert('la cantidad no puede ser mayor a: 9999999');
+                    return;
+                }if (fond==0) {
+                    alert('la cantidad debe ser mayor a cero');
+                    return;
+                }
+
+                fetch('/agregarfondos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ cantidad: fond })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        alert('Fondos agregados correctamente');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+
+            // Cargar fondos al inicio
+            fetch('/cargarfondos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    document.getElementById('fondos').innerText = 'Fondos del usuario: ' + data.cantidad;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un error al intentar cargar los fondos.');
+            });
+
+          
+            document.getElementById('proceder-pago').addEventListener('click', function() {
+    const productosCarrito = [];
+    const filasCarrito = document.querySelectorAll("#lista-carrito tbody tr");
+
+    if (filasCarrito.length === 0) {
+        alert("El carrito está vacío.");
+        return;
+    }
+
+    // Recorrer las filas del carrito para recolectar los datos
+    filasCarrito.forEach(fila => {
+        const nombre = fila.children[1].textContent.trim();
+        const precio = parseFloat(fila.children[2].textContent.replace('$', '').trim());
+        const cantidad = parseInt(fila.children[3].textContent.trim());
+        const id = fila.querySelector('.borrar-curso').getAttribute('data-id');
+
+        productosCarrito.push({ id, nombre, precio, cantidad });
+    });
+
+    // Guardar los productos en sessionStorage
+    sessionStorage.setItem('productosCarrito', JSON.stringify(productosCarrito));
+
+    // Redirigir a la página de pago
+    window.location.href = 'carrito.html';
+});
+
+
+        });
+    </script>
+    <script src="carito.js"></script>
+</body>
+</html>

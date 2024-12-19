@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="registro.css">
+    <script src="https://kit.fontawesome.com/9bca7b26a7.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1 class="logo">La Desesperanza</h1>
+            <a href="index.html">Inicio</a>
+            <a href="Contacto.html">Nosotros</a>
+            <a href="">Contactanos</a>
+            <a href="login.html"><i class="fa-regular fa-user"></i></a>
+            <a href="carrito.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </header>
+
+    <center>
+        <div class="login">
+            <form id="form-registro">
+                <h1>Regístrate</h1>
+                <label>Usuario</label>
+                <input type="text" id="Usuario_r" name="Usuario_r" required>
+
+                <label>Correo</label>
+                <input type="email" id="correo_r" name="correo_r" required>
+
+                <label>Contraseña</label>
+                <input type="password" name="contra_r" id="contra_r" required>
+
+                <label>Repite tu Contraseña</label>
+                <input type="password" name="contra_r2" id="contra_r2" required>
+
+                <button type="submit">Registrarse</button>
+            </form>
+            <p>¿Ya tienes una cuenta?</p>
+            <a href="index.html">
+                <input type="button" value="Iniciar Sesión">
+            </a>
+        </div>
+    </center>
+
+    <footer>
+        <p>&copy; 2024 Panadería Dulce Tradición</p>
+    </footer>
+    <script src="validaciones.js"></script>
+</body>
+</html>
