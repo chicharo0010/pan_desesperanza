@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const app = express();
 const multer = require("multer");
 const fs = require('fs');
-const req = require("express/lib/request");
+const req = require("express/lib/request"); 
 
 const port = 3000;
 
